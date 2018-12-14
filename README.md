@@ -1,11 +1,10 @@
 # OCT_image_classification
 
-This repository is the python script file to imprement conlutional VAE.
+This repository is the python script file to imprement conlutional VAE. I describe these python files below.
 
 
 ## Usage
 
-I describe these python files below.
 
 1. First of all, you must make the numpy file stored image pixels from exel files and image directry.
 
