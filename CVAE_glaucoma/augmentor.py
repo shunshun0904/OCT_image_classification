@@ -5,22 +5,23 @@ from data_resize import Tomography
 
 
 
-x_train_tom,x_test_tom,y_tran,y_test = Tomography().make()
-print("run data_resize.py")
-
-
-image_size = x_train_tom.shape[1]
-img_rows,img_cols = 224,224
-for i in range(len(x_train_tom)):
-    image = x_train_tom[i:i+1,:,:]
-    image = np.reshape(image, (224,224))
-    pilImg = Image.fromarray(np.uint8(image))
-    pilImg.save('./train/normal_%d.png' %i)
-
 
 
 class Augmentation():
-    def run(self):
+ 
+      
+    def run(self):     
+        x_train_tom,x_test_tom,y_tran,y_test = Tomography().make()
+        image_size = x_train_tom.shape[1]
+        img_rows,img_cols = 224,224
+        for i in range(len(x_train_tom)):
+            image = x_train_tom[i:i+1,:,:]
+            image = np.reshape(image, (224,224))
+            pilImg = Image.fromarray(np.uint8(image))
+            if i==2:
+                break
+            pilImg.save('./train/normal_%d.png' %i)
+
         images_dir = "./train"
         p = Augmentor.Pipeline(images_dir)
         p.rotate(probability=0.8, max_left_rotation=15, max_right_rotation=15)
@@ -30,6 +31,8 @@ class Augmentation():
         p.skew_corner(probability=0.8)
         #p.crop_random(probability=0.5, percentage_area=0.8)
         p.flip_left_right(probability=0.8)
-        p.sample(6000)
+        p.sample(6000)    
+        return x_train_tom,x_test_tom,y_tran,y_test
+        
 
 
