@@ -7,7 +7,7 @@ from augmentor import Augmentation
 from data_resize import Tomography
 
 
-Augmentation().run()
+
 
 # 縮小前の画像があるdir
 FROM_DIR = "./train/output"
@@ -29,17 +29,16 @@ class Make_train():
             gray_array = np.array(gray_im)
             im_reshape = np.reshape(gray_array, (1,224,224,1))
             test = np.concatenate([test,im_reshape])
-            if len(test)==2:
-                break
+            #if len(test)==2:
+            #    break
         normal_label = np.ones(len(test), dtype="int32")
 
         return test, normal_label
 
 if __name__ == '__main__':
+    _, x_test_tom, _, y_test = Augmentation().run()
     print("run augmentor.py")
     x_train_tom ,y_train = Make_train().image_list()
-    _, x_test_tom, _, y_test = Tomography().make()
-
     np.save('./x_train_augmentor.npy',x_train_tom)
     np.save('./ae_x_test.npy',x_test_tom)
     np.save('./y_train_augmentor.npy',y_train)
