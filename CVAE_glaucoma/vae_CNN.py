@@ -116,7 +116,7 @@ def plot_results(models,
 
 
 
-x_train_tom ,y_train= np.load('./x_train_augmentor.npy')
+x_train_tom = np.load('./x_train_augmentor.npy')
 x_test_tom = np.load('./ae_x_test.npy')
 y_train = np.load('./y_train_augmentor.npy')
 y_test = np.load('./ae_y_test.npy')
