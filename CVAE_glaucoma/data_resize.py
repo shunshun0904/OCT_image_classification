@@ -166,7 +166,7 @@ class Tomography():
         #x_slo = np.concatenate([normal_image_2, abnormal_image_2])
         x_tom = np.concatenate([normal_image_3, abnormal_image_3])
 
-
+        #正常データ503枚のうち50枚をテストデータにする
         ae_x_train = x_tom[:453,:,:]
         ae_x_test = x_tom[453:,:,:]
         ae_y_train = y[:453,]
